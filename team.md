@@ -14,3 +14,7 @@ Hi I am Aishwarya Raja. This is my first semester of my MS CS degree and excited
 
 #### Nidhi Desai
 Hello Team! I am Nidhi Desai. This is the first semester of my MS CS graduate program. I worked at Capgemini as an Analyst for around ten months, where I was a member of the Automation Testing team.My role was to write scripts to test the test cases as well as rectify the existing test suites. By the end of the course, I hope to have learned more about Software Engineering and the tools that are employed. I'm excited about the opportunity to work with everyone to develop an awesome project!
+
+
+Vedant Gupta
+Hi Team, I am Vedant Gupta, I have taken this course in my first semester for my graduate degree in MS CS. I have chosen Security as my concentration. I completed my bachelors degree in India last year and I worked at Deloitte for about 10 months before joining MET for my graduate studies. I look forward to a great start with the team and hope to build an amazing project. 
