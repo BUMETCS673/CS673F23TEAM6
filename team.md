@@ -11,3 +11,6 @@ Hi folks, I am Subhajit Das, but you can call me Jeet. This is the last semester
 
 #### Aishwarya Raja
 Hi I am Aishwarya Raja. This is my first semester of my MS CS degree and excited to learn new technologies and features. I am also excited to learn more from this course and our project. Happy to connect with you all! 
+
+#### Nidhi Desai
+Hello Team! I am Nidhi Desai. This is the first semester of my MS CS graduate program. I worked at Capgemini as an Analyst for around ten months, where I was a member of the Automation Testing team.My role was to write scripts to test the test cases as well as rectify the existing test suites. By the end of the course, I hope to have learned more about Software Engineering and the tools that are employed. I'm excited about the opportunity to work with everyone to develop an awesome project!
