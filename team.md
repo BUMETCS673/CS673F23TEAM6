@@ -1,4 +1,8 @@
 
+####Theerarun Tubnonghee (Steve)
+Goodday, everyone.
+My name is Theerarun Tubnonghee. I go by “Steve”. I did my CS undergrad at University of Colorado at Boulder. I have experienced — but not proficient — some of React/JS, python, and such. I have my side jobs as a freelance designer and media production teamlead, so I am good — I think — with management stuff and UX/UI design. Recently, I work on this website project for the in-ear monitor company in Thailand. You guys can check it out www.arcciem.com or www.arcciem-custom.co . It is just in early stage so don’t be too harsh on me haha. Anyway, I am glad to be on the team and want to learn from you guys !
+
 ####Chenyang Lyu
 Hi, my name is Chenyang Lyu. My major is CS. This is my last semester in BU. I could do react and python. I am looking forward to develop a project with you guys!
 
