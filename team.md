@@ -18,3 +18,8 @@ Hello Team! I am Nidhi Desai. This is the first semester of my MS CS graduate pr
 
 #### Vedant Gupta
 Hi Team, I am Vedant Gupta, I have taken this course in my first semester for my graduate degree in MS CS. I have chosen Security as my concentration. I completed my bachelors degree in India last year and I worked at Deloitte for about 10 months before joining MET for my graduate studies. I look forward to a great start with the team and hope to build an amazing project. 
+
+#### Yin Xiancheng
+Hello, I'm Yin Xiancheng, I have experience with using python to do data 
+analysis. I used pandas, tensorflow, and so on. Hope we can have a good 
+cooperation! :-)
