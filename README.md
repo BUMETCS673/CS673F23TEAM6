@@ -1,21 +1,27 @@
-# CS673 FALL2023 TEAM6
-## Team Members:
-Theerarun Tubnonghee (Steve) | Team Lead
+# React + TypeScript + Vite
 
-Aishwarya Raja | Configuration Lead
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Nidhi Desai | QA Lead
+Currently, two official plugins are available:
 
-Subhajit Das (Jeet) | Backend Lead
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Chenyang Lyu (Nick) | Frontend Lead
+## Expanding the ESLint configuration
 
-Yin Xiancheng (Xanthus) | DevOps Lead
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-Vedant Gupta | Design/Implementation Lead
+- Configure the top-level `parserOptions` property like this:
 
-## Finding a needle in a haystack
-Introducing the Student Public Marketplace, your go-to solution for students facing the challenges of adapting to a new city. From the difficulties of sourcing textbooks, furnishings, and study materials, the Student Public Marketplace is the answer to all your student-related needs. This platform empowers students to conveniently buy and sell used furniture, textbooks, and various items, simplifying the process of settling into a new environment. Our target audience comprises students in Boston, and we plan to ensure user authenticity by restricting access to student email addresses. Our technical foundation will leverage ReactJS for front-end development, while Python (RestAPI) and a Postgresql database will drive the back-end development
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-## Tech Stack
-React/JS + Python(RestAPI) + Postgresql
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
