@@ -36,11 +36,12 @@ const LoginDemo: React.FC = () => {
         />
       </div>
       <div className="login-box-right">
-        {type == "login" ? (
+        <LoginForm />
+        {/* {type == "login" ? (
           <LoginForm setType={setType} />
         ) : (
           <RegisterForm setType={setType} />
-        )}
+        )} */}
       </div>
     </div>
   );

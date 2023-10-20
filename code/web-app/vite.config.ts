@@ -18,6 +18,9 @@ export default ({ mode }) => {
       //   resolves: [AntdResolve()],
       // }),
     ],
+    define: {
+      'process.env': {}
+    },
     resolve: {
       alias: [
         // /@/xxxx => src/xxxx
