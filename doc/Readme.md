@@ -1,5 +1,6 @@
 ### Student Marketplace (Team 6)
-This folder contains all required documents, including SPPP, SDD, STD, meetingminutes and progressreport
+This folder contains all required documents, including SPPP, SDD, STD, meetingminutes and progressreport.
+Providing information of the project indetail
 
 [Readme.md](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Readme.md)
 
@@ -15,6 +16,9 @@ This folder contains all required documents, including SPPP, SDD, STD, meetingmi
 
 ### Iteration 0 - v0
 Date : September 29th, 2023
+
+### Iteration 1
+Date : October 20th, 2023
 
 ### Team Members:
 Theerarun Tubnonghee (Steve) | Team Lead
