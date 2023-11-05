@@ -24,12 +24,26 @@ if ENV_FILE:
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Third-Party Apps
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    # 'allauth.account',
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+
+
+    # Local Apps (project's apps)
+    'account'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+SITE_ID = 1
 
 DATABASES = {
     'default': {
@@ -104,3 +119,9 @@ STATIC_URL = 'static/'
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
