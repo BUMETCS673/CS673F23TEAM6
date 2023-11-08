@@ -12,8 +12,6 @@ import { Tabs, Tab } from '@nextui-org/react';
 import Register from '../pages/auth/Register';
 import { Link, useNavigate } from 'react-router-dom';
 import AddProductForm from './AddProductForm';
-import ContactUs from '../pages/contact';
-import About from '../pages/about';
 
 const LoginPopup = ({ isOpen, onOpenChange }) => (
   <Modal isOpen={isOpen} placement="center" onOpenChange={onOpenChange}>
@@ -63,50 +61,6 @@ const ProductPopup = ({ isOpen, onOpenChange }) => (
   </Modal>
 );
 
-const AboutPopup = ({ isOpen, onOpenChange }) => (
-  <Modal 
-    size = "xl"
-    isOpen={isOpen} 
-    placement="center" 
-    onOpenChange={onOpenChange}>
-    <ModalContent>
-      {(onClose) => (
-        <>
-          <ModalHeader></ModalHeader>
-          <ModalBody>
-            <About onClose={onClose} />
-          </ModalBody>
-        </>
-      )}
-    </ModalContent>
-  </Modal>
-);
-
-const ContactPopup = ({ isOpen, onOpenChange }) => (
-  <Modal 
-    size = "3xl"
-    isOpen={isOpen} 
-    placement="center" 
-    onOpenChange={onOpenChange}>
-    <ModalContent>
-      {(onClose) => (
-        <>
-          <ModalHeader>
-            <h1 className="flex items-center gap-2 pb-2 text-3xl font-semibold text-gray-800 ">
-              Contact Us
-            </h1>
-
-          </ModalHeader>
-          <ModalBody>
-            <ContactUs onClose={onClose} />
-          </ModalBody>
-
-        </>
-      )}
-    </ModalContent>
-  </Modal>
-);
-
 const Navbar = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -115,16 +69,6 @@ const Navbar = () => {
     isOpen: isloginOpen,
     onOpen: onloginOpen,
     onOpenChange: onLoginOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: isaboutOpen,
-    onOpen: onaboutOpen,
-    onOpenChange: onaboutOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: iscontactOpen,
-    onOpen: oncontactOpen,
-    onOpenChange: oncontactOpenChange,
   } = useDisclosure();
   const {
     isOpen: isProductOpen,
@@ -171,16 +115,15 @@ const Navbar = () => {
           </Link>
         )}
         {!user && (
-          <a onClick={onaboutOpen}>
+          <Link to="/" onClick={() => scrollToSection('about')}>
             About
-          </a>
+          </Link>
         )}
         {!user && (
-          <a onClick={oncontactOpen}>
+          <Link to="/" onClick={() => scrollToSection('contact')}>
             Contact
-          </a>
+          </Link>
         )}
-
         {user && <Link to="/marketplace">Marketplace</Link>}
 
         {!user && (
@@ -206,8 +149,6 @@ const Navbar = () => {
           isOpen={isProductOpen}
           onOpenChange={onProductOpenChange}
         />
-        <ContactPopup isOpen={iscontactOpen} onOpenChange={oncontactOpenChange} />
-        <AboutPopup isOpen={isaboutOpen} onOpenChange={onaboutOpenChange} />
       </div>
     </nav>
   );
