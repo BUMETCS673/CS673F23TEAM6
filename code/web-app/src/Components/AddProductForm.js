@@ -16,7 +16,7 @@ const AddProductForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      await axios.post('/products', data);
+      await axios.post('/api/products', data);
       setLoading(false);
       localStorage.removeItem('productData');
       onClose();

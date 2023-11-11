@@ -17,7 +17,7 @@ export default function Marketplace() {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/products?search=${params.get(`search`)');
+        const res = await axios.get('/api/products?search=${params.get(`search`)');
         setProducts(res.data);
         setLoading(false);
       } catch (error) {
