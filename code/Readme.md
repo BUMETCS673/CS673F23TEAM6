@@ -11,7 +11,7 @@
  1. Open terminal
  2. Go the the code/web-app folder
  2. Install all the dependencies
-'npm install'
+ `npm install`
  2. Run
-'npm start'
+ `npm start`
  4. View in your browser
