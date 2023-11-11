@@ -23,7 +23,7 @@
 5. Update all the .env variables values
 6. run the migrations
     ```bash
-    python manage.py migrate
+       python manage.py migrate
     ```
 7. Run the server
     ```bash
