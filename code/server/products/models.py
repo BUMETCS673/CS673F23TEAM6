@@ -1,10 +1,11 @@
 from django.db import models
-# from account.models import CustomUser
 from django.conf import settings
+
+from account import models as account_models
 
 
 class Product(models.Model):
-	user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	user_id = models.ForeignKey(account_models.CustomUser, on_delete=models.CASCADE)
 	title = models.TextField()
 	desc = models.TextField()
 	img = models.ImageField(upload_to='uploads')

@@ -13,3 +13,7 @@ class ProductPostAPIView(generics.CreateAPIView):
 
 	def post(self, serializer):
 		serializer.save(user_id=self.request.user.id)
+		return Response(serializer.data, status=status.HTTP_200_OK)
+
+	def get(self, request):
+		return Response(queryset, status=status.HTTP_200_OK)
