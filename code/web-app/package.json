@@ -2,6 +2,7 @@
   "name": "collegestreet",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
   "dependencies": {
     "@nextui-org/react": "^2.1.13",
     "axios": "^1.5.1",
