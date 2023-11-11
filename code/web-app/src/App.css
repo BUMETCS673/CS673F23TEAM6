@@ -126,9 +126,9 @@ nav {
     font-size: 1rem;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .nav-logo-container {
-    min-width: 100%;
+    max-width: 140px;
   }
   .navbar-links-container {
     display: none;

@@ -66,7 +66,7 @@ const Product = () => {
         <>
           {' '}
           <h1 className="flex flex-col items-start mt-6 mb-5 text-3xl font-semibold tracking-wide">
-            <button className="pb-3" onClick={() => navigate('/marketplace?search=')}>
+            <button className="pb-3" onClick={() => navigate('/marketplace')}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
