@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
@@ -15,7 +14,11 @@ const Login = ({ onClose }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post('/api/users/login', data);
+      const res = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
       if (!res.ok) {
         throw new Error('Something went wrong');
       }
