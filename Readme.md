@@ -5,8 +5,8 @@
 A student marketplace for all your needs. Students now struggle to adjust to a new city and have problems finding textbooks, furnishings, notes, etc. (Project name) is the solution to all the student problems. Students may offer their used furniture, textbooks, and other items, making it easier for new students to establish in a new location. The potential users would be the students in Boston, we plan to restrict the application to student email addresses. The primary technology stack that we will be implementing will be ReactJS for front-end development and Python (RestAPI) and Postgresql database for back-end development. 
 
 ### Local Set up
- - [Front-End]()
- - [Back-End]()
+ - [Front-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/web-app/Readme.md)
+ - [Back-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/server/README.md)
 
 ### Tech Stack :
 Front-End : 
