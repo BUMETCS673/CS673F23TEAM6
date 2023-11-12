@@ -1,30 +1,43 @@
 ### CollegeStreet (Team 6)
 This folder contains all required documents, including SPPP, SDD, STD, meetingminutes and progressreport.
-Providing information of the project indetail
+Providing information on the project in detail
 
 [Readme.md](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Readme.md)
 
-[Doc/Team6_SPPP](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_SPPP%20(v2).pdf)
+[Doc/Team6_SPPP](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_SPPP%20(v2).pdf))
 
-[Doc/Team6_userstories](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_userstories.pdf)
+[Doc/Team6_userstories](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_userstories%20(updated).pdf)
 
 [Doc/Team6_SPPP_RiskManagement](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_SPPP_RiskManagement.xlsx)
 
-[Doc/Team6_SDD](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_SDD.pdf)
+[Doc/Team6_SDD](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_SDD%20(updated).pdf)
+
+[Doc/Team6_STD](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_STD.pdf)
 
 [Doc/Team6_progressreport](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_ProgressReport%20(updated).xlsx)
 
-[Doc/Team6_meetingminutes](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_MeetingMinutes%20(updated).pdf)
+[Doc/Team6_meetingminutes](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_MeetingMinutes%20(updated).docx))
 
-[Doc/Team6_presentation_iter0](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_presentation_iter0.pptx)
+[Doc/Team6_presentation_iter2](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_presentation_iter2.pdf)
 
-[Doc/Team6_presentation_iter1](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_presentation_iter1.pdf)
+[RunnableCode](https://github.com/BUMETCS673/CS673F23TEAM6/tree/main/code)
+
+[DemoVideo](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/demo/Iteration2_demo.mov)
+
+
 
 ### Iteration 0 - v0
 Date : September 29th, 2023
 
 ### Iteration 1
 Date : October 20th, 2023
+
+### Iteration 1
+Date : November 11th, 2023
+
+### Local Set up
+ - [Front-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/web-app/Readme.md)
+ - [Back-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/server/README.md)
 
 ### Team Members:
 Theerarun Tubnonghee (Steve) | Team Lead
