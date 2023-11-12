@@ -8,7 +8,7 @@ Providing information on the project in detail
 
 [Doc/Team6_userstories](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_userstories%20(updated).pdf)
 
-[Doc/Team6_SPPP_RiskManagement](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/Team6_SPPP_RiskManagement.xlsx)
+[Doc/Team6_SPPP_RiskManagement](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_ProgressReport%20(updated).xlsx)
 
 [Doc/Team6_SDD](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/doc/IT2/Team6_SDD%20(updated).pdf)
 
