@@ -21,4 +21,5 @@ Back-End :
 Initially all the codes and changes are pushed to the main branch. Consequently, it delivered code crashes and faced synchronizations. 
 In order to avoid this synchronization, we created two branches which are fe (frontend) and be (backend). All the changes made in the frontend part are pushed to the branch fe. All the changes and performance happening in the backend are updated and pushed to the branch be. This makes a very clear path for everyone to understand where the changes and updates are made. Teammates are not given access to push the changes or update directly to the main branch.  The modified codes will be reviewed before PR (pull request). 
 Finally, the two branches fe and be will be reviewed and pushed to the main branch by the team leads. Here is a simple diagrammatic view of how this algorithm works.
+
 ![Alt text](image.png)
