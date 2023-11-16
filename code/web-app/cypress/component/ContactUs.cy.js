@@ -44,7 +44,7 @@ describe('Landing Page', () => {
   
       cy.get('form').submit();
   
-      // Verify that the error message is displayed
+      // Verify that error message is displayed
       cy.contains('Please enter a valid BU email address').should('exist');
     });
   });

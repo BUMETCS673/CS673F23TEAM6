@@ -24,7 +24,7 @@ describe('User component', () => {
     cy.get('p').contains('User Bio');
   });
 
-  it('should display the user\'s products', () => {
+  it('should display user\'s products', () => {
     cy.wait(() => {
       cy.get('.ProductCardProfile').should('be.visible');
     });

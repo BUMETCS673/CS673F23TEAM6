@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'cypress/react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
-import ContactUs from '../../src/pages/contact';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter;
 import Product from '../../src/pages/Product';
 
 describe('Product component', () => {
@@ -15,7 +14,7 @@ describe('Product component', () => {
     );
 });
 
-    it('should display the product details after fetching the product', () => {
+    it('should display product details after fetching the product', () => {
     cy.wait(() => {
       cy.get('.ProductCard').should('be.visible');
     });

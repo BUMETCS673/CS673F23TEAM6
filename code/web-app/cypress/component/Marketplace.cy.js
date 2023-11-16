@@ -14,7 +14,7 @@ describe('Marketplace component', () => {
     );
 });
 
-  it('should display a list of products after fetching products', () => {
+  it('should display list of products after fetching products', () => {
     cy.wait(() => {
       cy.get('.ProductCard').should('have.length.at.least', 1);
     });

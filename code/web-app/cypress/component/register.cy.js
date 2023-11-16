@@ -13,7 +13,7 @@ describe('Register component', () => {
       </Router>
     );
 });
-  it('should display the register form', () => {
+  it('should display register form', () => {
 
     cy.get('h2').contains('Create an Account!');
 
@@ -27,7 +27,6 @@ describe('Register component', () => {
   it('should validate the register form', () => {
 
     cy.get('button').contains('Join').click();
-
     cy.get('.invalid:visible').should('have.length', 3);
   });
 

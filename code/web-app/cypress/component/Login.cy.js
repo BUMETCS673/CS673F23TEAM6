@@ -17,7 +17,7 @@ describe('Login', () => {
   });
 
   it('should successfully log in with valid credentials', () => {
-    // Visit the login page
+    // Visit login page
  
     cy.get('input[name="email"]').type('your-valid-email@example.com');
     cy.get('input[name="password"]').type('your-valid-password');

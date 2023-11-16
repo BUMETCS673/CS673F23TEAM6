@@ -20,7 +20,7 @@ describe('Product Form Test', () => {
       cy.get('textarea[placeholder="Enter description of your product"]').type('This is a test product.');
       cy.get('input[placeholder="Enter price of your product"]').type('20');
   
-      // Upload a test image test-img.jpg
+      // Upload test image test-img.jpg
       cy.get('input[type="file"]').attachFile('test-image.jpg');
       cy.get('button:contains("Publish")').click();
       cy.url().should('not.contain', 'products'); // Assuming submission redirects to a different URL
