@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'cypress/react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
 import Register from '../../src/pages/auth/Register';
 
 describe('Register component', () => {

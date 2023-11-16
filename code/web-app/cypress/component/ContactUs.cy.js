@@ -21,9 +21,24 @@ describe('Landing Page', () => {
       cy.get('#name').type('John Smith');
       cy.get('#email').type('john.smith@bu.edu');
       
+      // Enter a valid phone number and submit the form
+      cy.get('#phone').clear().type('123-456-7890');
+      cy.get('#message').type('This is a test message');
+
+      cy.get('form').submit();
+    });
+
+    it('should Reject phone numbers with lengths less than or greater than 10', () => {
+ 
+      cy.contains('Submit').should('exist');
+      
+      // Fill out the contact form
+      cy.get('#name').type('John Smith');
+      cy.get('#email').type('jsmith@bu.edu');
+      
       // Reject phone numbers with lengths less than or greater than 10
-      // cy.get('#phone').type('123-456-789').should('have.css', 'border', '1px solid red');
-      // cy.get('#phone').type('12345678901').should('have.css', 'border', '1px solid red');
+      cy.get('#phone').type('123-456-789').should('have.css', 'border', '1px solid red');
+      cy.get('#phone').type('12345678901').should('have.css', 'border', '1px solid red');
 
       // Enter a valid phone number and submit the form
       cy.get('#phone').clear().type('123-456-7890');
@@ -38,7 +53,7 @@ describe('Landing Page', () => {
   
       // Fill out the contact form with an invalid email
       cy.get('#name').type('John Smith');
-      cy.get('#email').type('john.smith@invalid.com');
+      cy.get('#email').type('jsmith@gmail.com');
       cy.get('#phone').type('123-456-7890');
       cy.get('#message').type('This is a test message');
   

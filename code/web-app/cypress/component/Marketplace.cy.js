@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'cypress/react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
 import Marketplace from '../../src/pages/Marketplace';
 
 describe('Marketplace component', () => {
