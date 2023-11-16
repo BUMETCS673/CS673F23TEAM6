@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount } from 'cypress/react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
 import ContactUs from '../../src/pages/contact';
 
 describe('Landing Page', () => {
@@ -15,11 +14,12 @@ describe('Landing Page', () => {
   });
       it('should render the contact us section', () => {
  
+      cy.contains('Contact Us').should('exist');
       cy.contains('Submit').should('exist');
       
       // Fill out the contact form
       cy.get('#name').type('John Smith');
-      cy.get('#email').type('john.smith@bu.edu');
+      cy.get('#email').type('jsmith@bu.edu');
       
       // Enter a valid phone number and submit the form
       cy.get('#phone').clear().type('123-456-7890');
