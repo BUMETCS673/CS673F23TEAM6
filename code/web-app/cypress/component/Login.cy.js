@@ -1,9 +1,19 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import Login from '../../src/pages/auth/Login';
+
 
 describe('Login', () => {
+
     beforeEach(() => {
-      cy.visit('http://localhost:3000'); 
-      cy.contains('Login').click();
+      const onCloseStub = cy.stub().as('onCloseStub');
+
+      mount(
+        <Router>
+          <Login onClose={onCloseStub} />
+        </Router>
+      );
   });
 
   it('should successfully log in with valid credentials', () => {

@@ -1,9 +1,18 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter;
+import User from '../../src/pages/User';
 
 describe('User component', () => {
-    beforeEach(() => {
-      cy.visit('http://localhost:3000/User'); 
-  });
+  beforeEach(() => {
+    const onCloseStub = cy.stub().as('onCloseStub');
+
+    mount(
+      <Router>
+        <User onClose={onCloseStub} />
+      </Router>
+    );
+});
 
   it('should display the user\'s name, email, and bio', () => {
     cy.wait(() => {

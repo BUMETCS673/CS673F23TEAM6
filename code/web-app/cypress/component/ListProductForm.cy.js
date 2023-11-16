@@ -1,9 +1,19 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import AddProductForm from '../../src/Components/AddProductForm';
 
-describe('Product Form Tests', () => {
-    beforeEach(() => {
-            cy.visit('http://localhost:3000/Marketplace'); 
-    });
+
+describe('Product Form Test', () => {
+  beforeEach(() => {
+    const onCloseStub = cy.stub().as('onCloseStub');
+
+    mount(
+      <Router>
+        <AddProductForm onClose={onCloseStub} />
+      </Router>
+    );
+});
   
     it('should fill out and submit the form successfully', () => {
       cy.get('input[placeholder="Enter title of your product"]').type('Test Product');

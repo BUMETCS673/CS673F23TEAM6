@@ -1,9 +1,18 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import Marketplace from '../../src/pages/Marketplace';
 
 describe('Marketplace component', () => {
-    beforeEach(() => {
-      cy.visit('http://localhost:3000/Marketplace'); 
-  });
+  beforeEach(() => {
+    const onCloseStub = cy.stub().as('onCloseStub');
+
+    mount(
+      <Router>
+        <Marketplace onClose={onCloseStub} />
+      </Router>
+    );
+});
 
   it('should display a list of products after fetching products', () => {
     cy.wait(() => {

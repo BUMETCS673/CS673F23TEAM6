@@ -1,8 +1,19 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import Register from '../../src/pages/auth/Register';
 
 describe('Register component', () => {
+  beforeEach(() => {
+    const onCloseStub = cy.stub().as('onCloseStub');
+
+    mount(
+      <Router>
+        <Register onClose={onCloseStub} />
+      </Router>
+    );
+});
   it('should display the register form', () => {
-    cy.visit('/register');
 
     cy.get('h2').contains('Create an Account!');
 
@@ -14,7 +25,6 @@ describe('Register component', () => {
   });
 
   it('should validate the register form', () => {
-    cy.visit('/register');
 
     cy.get('button').contains('Join').click();
 
@@ -22,8 +32,7 @@ describe('Register component', () => {
   });
 
   it('should register a new user', () => {
-    cy.visit('/register');
-
+    
     cy.get('input[name="name"]').type('John Doe');
     cy.get('input[name="email"]').type('john.doe@example.com');
     cy.get('input[name="password"]').type('Password123');

@@ -1,9 +1,19 @@
-import { describe, it } from 'cypress';
+import React from 'react';
+import { mount } from 'cypress/react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import ContactUs from '../../src/pages/contact';
+import Product from '../../src/pages/Product';
 
 describe('Product component', () => {
-    beforeEach(() => {
-      cy.visit(`http://localhost:3000/products`); 
-  });
+  beforeEach(() => {
+    const onCloseStub = cy.stub().as('onCloseStub');
+
+    mount(
+      <Router>
+        <Product onClose={onCloseStub} />
+      </Router>
+    );
+});
 
     it('should display the product details after fetching the product', () => {
     cy.wait(() => {
