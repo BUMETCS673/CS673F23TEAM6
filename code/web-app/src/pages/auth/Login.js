@@ -16,15 +16,15 @@ const Login = ({ onClose }) => {
     try {
       setLoading(true);
       const res = await axios.post('/api/users/login', data);
-      if (!res.ok) {
+      if (res.status !== 200) {
         throw new Error('Something went wrong');
       }
-      const resData = await res.json();
+      const resData = res.data;
       setLoading(false);
       localStorage.setItem('token', resData.token);
       localStorage.setItem('user', JSON.stringify(resData.user));
       onClose();
-      window.location.reload();
+      // window.location.reload();
       navigate('/marketplace');
     } catch (error) {
       console.log(error);
