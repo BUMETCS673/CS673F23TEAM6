@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
@@ -15,20 +14,28 @@ const Login = ({ onClose }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post('/api/users/login', data);
-      if (res.status !== 200) {
+      const res = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
         throw new Error('Something went wrong');
       }
-      const resData = res.data;
+      const resData = await res.json();
       setLoading(false);
       localStorage.setItem('token', resData.token);
       localStorage.setItem('user', JSON.stringify(resData.user));
-      onClose();
-      // window.location.reload();
-      navigate('/marketplace');
     } catch (error) {
       console.log(error);
       setLoading(false);
+    } finally {
+      setData({
+        email: '',
+        password: '',
+      });
+      onClose();
+      navigate('/marketplace?search=');
     }
   };
   return (
