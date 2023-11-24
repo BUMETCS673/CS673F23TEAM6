@@ -1,5 +1,7 @@
-from rest_framework import serializers
+from rest_framework import serializers, generics
 from account.models import CustomUser
+
+from rest_framework.permissions import IsAuthenticated
 
 class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,6 +39,12 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         if not user.check_password(value):
             return serializers.ValidationError({"old_password": "old password is not correct"})
         return value
+
+    def update(self, validated_data):
+        user = CustomUser.objects.get(email=validated_data["email"])
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 
