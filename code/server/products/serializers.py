@@ -13,3 +13,6 @@ class ProductSerializer(serializers.ModelSerializer):
 	def post_product(self, validated_data):
 		product = Product.objects.create(**validated_data)
 		return product
+
+	def get_products(self, validated_data):
+		products = Product.objects.
