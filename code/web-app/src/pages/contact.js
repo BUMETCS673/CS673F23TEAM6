@@ -1,21 +1,23 @@
-import { Tab } from '@nextui-org/react';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import emailjs from 'emailjs-com';
 
-const ContactUs = ({ onClose }) => {
+const ContactUs = () => {
+    const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async(e) => {
+        
         e.preventDefault();
         
-        const formData = {
-                name: e.target.name.value,
-                email: e.target.email.value,
-                phone: e.target.phone.value,
-                message: e.target.message.value,
-            };
-        
-            // TODO: Code to handle the sending of email
-            console.log('Form Data:', formData);
+        emailjs.sendForm('service_4tz9z0x', 'template_nkr4iaq', e.target, 'utcyuCRuR1iUZENwv')
+            
+            .then((result) => {
+                console.log('Email successfully sent!',result.text);
+                setMessage('Email successfully sent!');
+            }, (error) => {
+                console.log('Failed to send email:',error.text);
+                setMessage('Failed to send email. Please try again later.');
+            });
+
             e.target.reset();
     
     };
@@ -24,27 +26,27 @@ const ContactUs = ({ onClose }) => {
       <div className="w-full ">
         <div className="p-2">
 
-        <form className="mt-5 md:flex md:space-x-8"  onSubmit={handleSubmit}>
+        <form className="mt-5 md:flex md:space-x-8" onSubmit={handleSubmit}>
             
             <div className="md:w-1/2 flex flex-col justify-around space-y-4 pr-8 border-r border-gray-300">
                 <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" placeholder="John Smith" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
+                    <input name="name" type="text" id="name" placeholder="John Smith" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
                 </div>
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" placeholder="john.smith@example.com" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
+                    <input name="email" type="email" id="email" placeholder="john.smith@example.com" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
                 </div>
                 <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
-                    <input type="tel" id="phone" placeholder="xxx-xxx-xxxx" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
+                    <input name="phone" type="tel" id="phone" placeholder="xxx-xxx-xxxx" className="mt-1 block w-full px-3 py-2 bg-white border-b border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
                 </div>
             </div>
 
             <div className="md:w-1/2 flex flex-col justify-between ">
                 <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                    <textarea id="message" placeholder="Write text here..." rows="5" className="mt-1 block w-full px-3 py-2 bg-white text-gray-700 focus:outline-none resize-none" style={{ minHeight: "250px" }}></textarea>
+                    <textarea name="message" id="message" placeholder="Write text here..." rows="5" className="mt-1 block w-full px-3 py-2 bg-white text-gray-700 focus:outline-none resize-none" style={{ minHeight: "250px" }}></textarea>
                 </div>
 
                 <div className="flex justify-end mt-4">
@@ -57,6 +59,7 @@ const ContactUs = ({ onClose }) => {
         </form>
         </div>
       </div>
+      {message && <p>{message}</p>}
     </div>
   );
 };
