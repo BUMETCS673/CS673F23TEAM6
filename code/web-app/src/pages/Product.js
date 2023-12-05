@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Button,
+  Input,
+  useDisclosure,
+  useTable
+} from '@nextui-org/react';
+
 const Product = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const [conversation, setConversation] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const { visible, open, close } = useDisclosure();
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -40,6 +54,14 @@ const Product = () => {
       navigate('/marketplace');
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleSendMessage = (message) => {
+    if (message.trim()) {
+      // TODO: send the message to the server
+      setConversation([...conversation, { text: message, isSender: true }]);
+      setInputValue('');
     }
   };
 
@@ -138,6 +160,40 @@ const Product = () => {
                   </svg>
                 </button>
               )}
+            
+            <Modal closeButton aria-labelledby="modal-title" open={visible} onClose={close}>
+              <ModalHeader>
+                <h1 className="text-xl font-bold">Contact Seller</h1>
+              </ModalHeader>
+              <ModalBody>
+                {/* TODO: add initial conversation messages here*/}
+                <div className="overflow-auto h-64">
+                  {conversation.map((message, index) => (
+                    <div key={index} className={`p-2 my-2 rounded shadow-md ${message.isSender ? 'bg-blue-500 text-white self-end' : 'bg-gray-300 text-black self-start'}`}>
+                      {message.text}
+                    </div>
+                  ))}
+                </div>
+                <Input
+                  underlined
+                  clearable
+                  bordered
+                  fullWidth
+                  color="primary"
+                  size="lg"
+                  placeholder="Type a message"
+                  value={inputValue} 
+                  onChange={(e) => setInputValue(e.target.value)} 
+                  contentRightStyling={false}
+                  contentRight={
+                    <Button auto flat onClick={handleSendMessage}>
+                      Send
+                    </Button>
+                  }
+                />
+              </ModalBody>
+            </Modal>
+
             </div>
           </div>
         </>
