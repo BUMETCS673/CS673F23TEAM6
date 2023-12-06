@@ -5,20 +5,19 @@ import axios from 'axios';
 
 export default function Marketplace() {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/');
     }
-  }, [navigate]);
-  useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('http://localhost:8000/products');
+        const res = await axios.get('/api/products?search=${params.get(`search`)');
         setProducts(res.data);
         setLoading(false);
       } catch (error) {
@@ -27,7 +26,7 @@ export default function Marketplace() {
       }
     };
     fetchProducts();
-  }, [navigate]);
+  }, [navigate, window.location.search]);
 
   return (
     <div>

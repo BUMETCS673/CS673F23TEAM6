@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Register = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
@@ -13,11 +14,10 @@ const Register = ({ onClose }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      await fetch('http://localhost:8000/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const res = await axios.post('/api/users/register', data);
+      if(!res.ok){
+        throw new Error("Something is wrong");
+      }
       setLoading(false);
       onClose();
     } catch (error) {
