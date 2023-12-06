@@ -1,15 +1,14 @@
 from django.db import models
-from django.conf import settings
-
-from account import models as account_models
-
+import uuid
 
 class Product(models.Model):
-	user_id = models.ForeignKey(account_models.CustomUser, on_delete=models.CASCADE)
-	title = models.TextField()
-	desc = models.TextField()
-	img = models.ImageField(upload_to='uploads')
-	created_on = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    status = models.CharField(max_length=12)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.CharField(max_length=800)
+    seller_id = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
+    category = models.CharField(max_length=30)
+    quantity = models.IntegerField()
 
-	class Meta:
-		db_table = 'products'
+    def __str__(self):
+        return self.description

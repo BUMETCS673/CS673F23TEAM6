@@ -1,12 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ProductViewSet
 
-from rest_framework_simplejwt import views as jwt_views
-
-from .views import ProductPostAPIView
-
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
-    path("products", ProductPostAPIView.as_view()),
-    ]
-
-
+    path('', include(router.urls)),
+]
