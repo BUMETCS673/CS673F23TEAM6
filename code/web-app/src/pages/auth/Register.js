@@ -60,7 +60,18 @@ const Register = ({ onClose }) => {
                 name="email"
                 id="email"
                 value={data.email}
-                onChange={(e) => setData({ ...data, email: e.target.value })}
+                onChange={(e) => {
+                  setData({ ...data, email: e.target.value });
+                }}
+                onBlur={(e) => {
+                  // Only .edu e-mail ids can register
+                  if (e.target.value.endsWith('.edu')) {
+                    setData({ ...data, email: e.target.value });
+                  } else {
+                    setData({ ...data, email: '' });
+                    window.alert('Only .edu e-mail ids can register');
+                  }
+                }}
                 placeholder="Email"
                 autoComplete="email"
                 className="focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-[#9155FD]"

@@ -392,7 +392,6 @@ function Searchbar() {
           id="default-search"
           className="block w-full p-4 pl-20 pr-10 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-3xl focus:ring-0 focus:border-gray-500 focus:placeholder-gray-400 focus:outline-none focus:ring-offset-0 focus:ring-offset-transparent focus:ring-tea"
           placeholder="Search"
-          required=""
         />
 
         <button
@@ -428,7 +427,6 @@ const Navbar = () => {
     onOpen: onloginOpen,
     onOpenChange: onLoginOpenChange,
   } = useDisclosure();
-
   const {
     isOpen: isaboutOpen,
     onOpen: onaboutOpen,

@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Marketplace from './pages/Marketplace';
 import Product from './pages/Product';
 import User from './pages/User';
+import Chat from './pages/Chat';
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
       {
         path: '/user/:id',
         element: <User />,
+      },
+      {
+        path: '/chat/:id',
+        element: <Chat />,
       },
     ],
   },
