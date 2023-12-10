@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'cypress/react';
 import Login from '../../src/pages/auth/Login';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 describe('Login', () => {
@@ -39,7 +40,7 @@ describe('Login', () => {
 
   });
 
-  it('should toggle password visibility when the eye icon is clicked', () => {
+it('should toggle password visibility when the eye icon is clicked', () => {
     
     cy.get('.toggle-password').click();
     cy.get('#password').should('have.attr', 'type', 'text');
