@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Register = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
@@ -8,20 +9,29 @@ const Register = ({ onClose }) => {
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
+    if (!data.name || !data.email || !data.password) {
+      setError('Please fill all the fields');
+      console.log('Error set:', error);
+      return;
+    }
+
     try {
       setLoading(true);
-      await fetch('http://localhost:8000/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const res = await axios.post('/api/users/register', data);
+      if(res.status !== 200){
+        throw new Error(res.data.message || 'Registration failed');
+      }
+
       setLoading(false);
       onClose();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || error.message);
       setLoading(false);
     }
   };
@@ -133,9 +143,14 @@ const Register = ({ onClose }) => {
               </button>
             </div>
 
+            {error && (
+              <div className="flex items-center justify-center w-full px-4 py-2 text-sm text-red-700 bg-red-100 rounded-md">
+                {error}
+              </div>
+            )}
+
             <button
               type="submit"
-              disabled={loading || !data.email || !data.password || !data.name}
               onClick={(e) => handleSubmit(e)}
               className="bg-[#9155FD] w-full p-2 rounded-xl hover:shadow-lg hover:bg-[#7e3af2] transition duration-300 "
             >
