@@ -5,6 +5,7 @@ import axios from 'axios';
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -13,11 +14,15 @@ const Login = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!data.email || !data.password) {
+      setError('Please fill in all fields');
+      return;
+    }
     try {
       setLoading(true);
       const res = await axios.post('/api/users/login', data);
       if (res.status !== 200) {
-        throw new Error('Something went wrong');
+        throw new Error('Login failed');
       }
       const resData = res.data;
       setLoading(false);
@@ -27,7 +32,7 @@ const Login = ({ onClose }) => {
       // window.location.reload();
       navigate('/marketplace');
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || 'Login failed');
       setLoading(false);
     }
   };
@@ -119,6 +124,9 @@ const Login = ({ onClose }) => {
                   </svg>
                 )}
               </button>
+              {error && (
+                <div className="text-red-500">{error}</div>
+              )}
             </div>
 
             <button

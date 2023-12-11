@@ -11,6 +11,16 @@ const Register = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
+  const isEduEmail = (email) => {
+    return email.endsWith('.edu');
+  };
+
+  const isStrongPassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+    return regex.test(password);
+  };
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -18,6 +28,11 @@ const Register = ({ onClose }) => {
     if (!data.name || !data.email || !data.password) {
       setError('Please fill all the fields');
       console.log('Error set:', error);
+      return;
+    }
+
+    if (!isStrongPassword(data.password)) {
+      setError('Password must be 8-12 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.');
       return;
     }
 
@@ -75,11 +90,11 @@ const Register = ({ onClose }) => {
                 }}
                 onBlur={(e) => {
                   // Only .edu e-mail ids can register
-                  if (e.target.value.endsWith('.edu')) {
-                    setData({ ...data, email: e.target.value });
-                  } else {
+                  if (!isEduEmail(e.target.value)) {
+                    setError('Only .edu email addresses are allowed');
                     setData({ ...data, email: '' });
-                    window.alert('Only .edu e-mail ids can register');
+                  } else {
+                    setError('');
                   }
                 }}
                 placeholder="Email"

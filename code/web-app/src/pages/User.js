@@ -1,26 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import EditProfileModal from '../Components/EditProfileModal';
 import ProductCardProfile from '../Components/ProductCardProfile';
+
 const User = () => {
   const params = useParams();
   const [user, setUser] = useState({});
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [showEditModal, setShowEditModal] = useState(false);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/users/${params?.id}`
+          `/users/${params?.id}`
         );
         setUser(res.data?.user);
         setProducts(res.data?.posts);
-        console.log(res.data);
       } catch (error) {
-        console.log(error);
+        setError('Failed to fetch user data');
+      } finally {
+        setLoading(false);
       }
     };
     fetchUser();
   }, [params]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const handleEditSubmit = async (formData) => {
+    try {
+      await axios.post(`/users/update/${user.id}`, formData);
+
+      const updatedUserRes = await axios.get(`/users/${params.id}`);
+      setUser(updatedUserRes.data.user);
+
+      setShowEditModal(false);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
   return (
     <div>
       <div className="p-16">
@@ -79,15 +108,29 @@ const User = () => {
             </div>
           </div>
           <div className="pb-12 mt-20 text-center border-b">
+            <div className="flex justify-between items-center">
             <h1 className="text-4xl font-medium text-gray-700">{user?.name}</h1>
+            <button 
+              onClick={() => setShowEditModal(true)}
+              className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded"
+            >
+              Edit Profile
+            </button>
+            </div>
             <p className="mt-3 font-light text-gray-600">{user?.email}</p>
             <p className="mt-8 text-gray-500">{user?.bio}</p>
+            <EditProfileModal
+              isVisible={showEditModal}
+              onClose={() => setShowEditModal(false)}
+              onSubmit={handleEditSubmit}
+              user={user}
+            />
           </div>
           <div className="flex flex-col justify-center mt-12">
-            <section className="grid w-full grid-cols-1 pb-40 mx-auto gap-x-5 gap-y-10 max-w-7xl md:grid-cols-3 ">
+            <section className="grid w-full grid-cols-1 pb-40 mx-auto gap-x-5 gap-y-10 max-w-7xl md:grid-cols-3">
               {products?.length > 0 &&
-                products?.map((product, i) => (
-                  <ProductCardProfile key={i} product={product} />
+                products?.map((product) => (
+                  <ProductCardProfile key={product.id} product={product} />
                 ))}
             </section>
           </div>

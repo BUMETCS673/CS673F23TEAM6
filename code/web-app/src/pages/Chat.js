@@ -16,7 +16,7 @@ export default function Chat() {
   const fetchMessages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/conversations/${
+        `/conversations/${
           JSON.parse(localStorage.getItem('user')).id
         }/${params?.id}`
       );
@@ -29,7 +29,7 @@ export default function Chat() {
   const fetchContacts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/contacts/${
+        `/contacts/${
           JSON.parse(localStorage.getItem('user')).id
         }`
       );
@@ -44,7 +44,7 @@ export default function Chat() {
     e.preventDefault();
     if (message === '') return;
     try {
-      const res = await axios.post(`http://localhost:8000/send-message`, {
+      const res = await axios.post(`/send-message`, {
         senderId: JSON.parse(localStorage.getItem('user')).id,
         receiverId: Number(params?.id),
         text: message,
@@ -62,7 +62,7 @@ export default function Chat() {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/users/${params?.id}`
+          `/users/${params?.id}`
         );
         setUser(res.data?.user);
         console.log(res.data);
