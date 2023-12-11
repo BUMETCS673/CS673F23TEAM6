@@ -10,6 +10,7 @@ class Product(models.Model):
 	desc = models.TextField()
 	img = models.ImageField(upload_to='uploads')
 	created_on = models.DateTimeField(auto_now_add=True)
+	price = models.TextField()
 
 	class Meta:
 		db_table = 'products'

@@ -11,6 +11,41 @@
  - [Sanity](https://www.sanity.io/) : CDN service -  Decided to use Cloudinary
  - [Supabase](https://supabase.com/) : Postgres database and hosting it
 
+
+ ## Available APIs
+ 
+ **Users**
+
+*/api/users/register* - User Registration
+
+*/api/users/login* - User Login
+
+*/api/users/logout* - Logout
+
+*/api/users/user* - User Info
+
+*/api/users/changepass* - Change/update user password
+
+*/api/users/login/refresh* -  User Re-login
+
+*/api/users/token* - User Auth token
+
+*/api/users/token/refresh* - User Auth token
+
+
+**Products**
+
+*/api/products/all* - Get all products
+
+*/api/products/create* - Create a product
+
+*/api/products/<int:pd_id>* - Get a product by Id
+
+*/api/products/update/<int:pd_id>* - update a product by Id
+
+*/api/products/delete/<int:pd_id>* - delete a product by Id
+
+
  ## Steps to run
 
  1. Create virtual env
