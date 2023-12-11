@@ -6,17 +6,13 @@ describe('Login and Logout', () => {
     const onCloseStub = cy.stub().as('onCloseStub');
       // Visit the login page
       cy.visit('http://localhost:3000');
-      // test user credentials
-      const email = 'nidhi@gmail.com';
-      const password = 'Nidhi@CollegeStreet673';
-      
       cy.contains('Log-in').click()
   });
   it('should successfully log in and log out', () => {
 
-    // // test user credentials
-    // const email = 'nidhi@gmail.com';
-    // const password = 'Nidhi@CollegeStreet673';
+    // test user credentials
+    const email = 'nidhi@gmail.com';
+    const password = 'Nidhi@CollegeStreet673';
 
     // Login
     cy.get('[data-cy=login-email]').type(email);
