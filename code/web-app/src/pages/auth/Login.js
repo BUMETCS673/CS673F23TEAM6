@@ -5,6 +5,7 @@ import axios from 'axios';
 const Login = ({ onClose }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -13,21 +14,25 @@ const Login = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!data.email || !data.password) {
+      setError('Please fill in all fields');
+      return;
+    }
     try {
       setLoading(true);
       const res = await axios.post('/api/users/login', data);
-      if (!res.ok) {
-        throw new Error('Something went wrong');
+      if (res.status !== 200) {
+        throw new Error('Login failed');
       }
-      const resData = await res.json();
+      const resData = res.data;
       setLoading(false);
       localStorage.setItem('token', resData.token);
       localStorage.setItem('user', JSON.stringify(resData.user));
       onClose();
-      window.location.reload();
+      // window.location.reload();
       navigate('/marketplace');
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || 'Login failed');
       setLoading(false);
     }
   };
@@ -119,6 +124,9 @@ const Login = ({ onClose }) => {
                   </svg>
                 )}
               </button>
+              {error && (
+                <div className="text-red-500">{error}</div>
+              )}
             </div>
 
             <button
@@ -155,7 +163,7 @@ const Login = ({ onClose }) => {
                 className="justify-end float-right pb-4 -mr-2"
                 type="reset"
                 onClick={() => {
-                  // navigate to forgot password page
+                  // TODO: navigate to forgot password page
                 }}
               >
                 <span className="text-sm text-primary hover:text-[#9155FD]">

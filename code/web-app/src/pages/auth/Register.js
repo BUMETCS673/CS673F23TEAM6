@@ -9,19 +9,44 @@ const Register = ({ onClose }) => {
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  const isEduEmail = (email) => {
+    return email.endsWith('.edu');
+  };
+
+  const isStrongPassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+    return regex.test(password);
+  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
+    if (!data.name || !data.email || !data.password) {
+      setError('Please fill all the fields');
+      console.log('Error set:', error);
+      return;
+    }
+
+    if (!isStrongPassword(data.password)) {
+      setError('Password must be 8-12 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.');
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await axios.post('/api/users/register', data);
-      if(!res.ok){
-        throw new Error("Something is wrong");
+      if(res.status !== 200){
+        throw new Error(res.data.message || 'Registration failed');
       }
+
       setLoading(false);
       onClose();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || error.message);
       setLoading(false);
     }
   };
@@ -60,7 +85,18 @@ const Register = ({ onClose }) => {
                 name="email"
                 id="email"
                 value={data.email}
-                onChange={(e) => setData({ ...data, email: e.target.value })}
+                onChange={(e) => {
+                  setData({ ...data, email: e.target.value });
+                }}
+                onBlur={(e) => {
+                  // Only .edu e-mail ids can register
+                  if (!isEduEmail(e.target.value)) {
+                    setError('Only .edu email addresses are allowed');
+                    setData({ ...data, email: '' });
+                  } else {
+                    setError('');
+                  }
+                }}
                 placeholder="Email"
                 autoComplete="email"
                 className="focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-[#9155FD]"
@@ -122,9 +158,14 @@ const Register = ({ onClose }) => {
               </button>
             </div>
 
+            {error && (
+              <div className="flex items-center justify-center w-full px-4 py-2 text-sm text-red-700 bg-red-100 rounded-md">
+                {error}
+              </div>
+            )}
+
             <button
               type="submit"
-              disabled={loading || !data.email || !data.password || !data.name}
               onClick={(e) => handleSubmit(e)}
               className="bg-[#9155FD] w-full p-2 rounded-xl hover:shadow-lg hover:bg-[#7e3af2] transition duration-300 "
             >

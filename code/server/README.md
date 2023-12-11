@@ -52,15 +52,15 @@
  2. Activate virtual env
  3. Install all the dependencies
     ```bash
-        python -r install requirements.txt
+    python -r install requirements.txt
     ```
 4. Copies all the env variables from .env.examples to .env
 5. Update all the .env variables values
 6. run the migrations
-    ```bash
-    python manage.py migrate
-    ```
+   ```bash
+   python manage.py migrate
+   ```
 7. Run the server
-    ```bash
-        python manage.py run-server
-    ```
+   ```bash
+   python manage.py run-server
+   ```

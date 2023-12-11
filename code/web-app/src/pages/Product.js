@@ -1,17 +1,56 @@
 import React, { useEffect, useState } from 'react';
+import { categories, location } from '../utils';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  useDisclosure,
+} from '@nextui-org/react';
+import EditProductForm from '../Components/EditProductForm';
+
+const ProductPopup = ({ isOpen, onOpenChange, product }) => (
+  <Modal
+    size="3xl"
+    isOpen={isOpen}
+    placement="center"
+    onOpenChange={onOpenChange}
+  >
+    <ModalContent>
+      {(onClose) => (
+        <>
+          <ModalHeader>
+            <h1 className="flex items-center gap-2 pb-2 text-3xl font-semibold text-gray-800 ">
+              Edit Product
+            </h1>
+          </ModalHeader>
+          <ModalBody className="w-full">
+            <EditProductForm onClose={onClose} product={product} />
+          </ModalBody>
+        </>
+      )}
+    </ModalContent>
+  </Modal>
+);
+
 const Product = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const {
+    isOpen: isProductOpen,
+    onOpen: onProductOpen,
+    onOpenChange: onProductOpenChange,
+  } = useDisclosure();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8000/products/${params?.id}`
+          `/api/products/${params?.id}`
         );
         setProduct(res.data);
         setLoading(false);
@@ -31,13 +70,13 @@ const Product = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:8000/products/${params?.id}`, {
+      await axios.post(`/api/products/delete/${params?.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      navigate('/marketplace');
+      navigate('/marketplace?search=');
     } catch (error) {
       console.log(error);
     }
@@ -65,8 +104,13 @@ const Product = () => {
       ) : (
         <>
           {' '}
+          <ProductPopup
+            isOpen={isProductOpen}
+            onOpenChange={onProductOpenChange}
+            product={product}
+          />
           <h1 className="flex flex-col items-start mt-6 mb-5 text-3xl font-semibold tracking-wide">
-            <button className="pb-3" onClick={() => navigate('/marketplace?search=')}>
+            <button className="pb-3" onClick={() => window.history.back()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -82,7 +126,61 @@ const Product = () => {
                 />
               </svg>
             </button>
-            <span>{product?.title}</span>
+            <span className="flex items-center">
+              {product?.title}{' '}
+              {product?.authorId ===
+                JSON.parse(localStorage.getItem('user'))?.id && (
+                <svg
+                  onClick={onProductOpen}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 cursor-pointer"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                  />
+                </svg>
+              )}
+            </span>
+            <span className="flex items-center text-sm text-gray-500">
+              <span>
+                {
+                  categories?.find((cat) => cat.value === product?.category)
+                    ?.label
+                }
+              </span>
+              ,{' '}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                />
+              </svg>
+              <span>
+                {
+                  location?.find((loc) => loc.value === product?.location)
+                    ?.label
+                }
+              </span>
+            </span>
           </h1>
           <div className="items-center px-4 py-8 mx-auto rounded-xl">
             <div className="grid grid-cols-4 grid-rows-2 gap-2 p-1 rounded-2xl">
@@ -103,7 +201,7 @@ const Product = () => {
                 ))}
             </div>
           </div>
-          <div className="flex justify-between mx-auto mt-5">
+          <div className="flex justify-between w-full mx-auto mt-5">
             {/* description */}
             <div className="w-2/3 h-full">
               <p className="mx-2 mt-2 text-gray-600 break-words">
@@ -111,7 +209,12 @@ const Product = () => {
               </p>
             </div>
             <div className="flex items-center justify-center w-1/4 h-20 mx-2 text-2xl font-semibold text-center border rounded-xl">
-              Price: $ {product?.price}
+              Price:{' '}
+              {product?.price === 0 ? (
+                <span className="px-1 text-green-500">Free</span>
+              ) : (
+                <span className="px-1"> $ {product?.price}</span>
+              )}
               {product?.authorId ===
                 JSON.parse(localStorage.getItem('user'))?.id && (
                 <button

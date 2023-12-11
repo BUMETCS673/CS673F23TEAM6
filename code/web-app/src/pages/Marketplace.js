@@ -17,7 +17,15 @@ export default function Marketplace() {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/api/products?search=${params.get(`search`)');
+        const res = await axios.get(
+          `/products?search=${params.get(
+            'search'
+          )}&location=${params.getAll('location')}&category=${params.getAll(
+            'category'
+          )}&min_price=${params.get('min_price')}&max_price=${params.get(
+            'max_price'
+          )}&sortBy=${params.get('sortBy')}`
+        );
         setProducts(res.data);
         setLoading(false);
       } catch (error) {
@@ -26,7 +34,7 @@ export default function Marketplace() {
       }
     };
     fetchProducts();
-  }, [navigate, window.location.search]);
+  }, [window.location.search]);
 
   return (
     <div>

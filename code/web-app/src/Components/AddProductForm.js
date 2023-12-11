@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Card, CardBody, Input, Textarea } from '@nextui-org/react';
+import {
+  Card,
+  CardBody,
+  Input,
+  Textarea,
+  Select,
+  SelectItem,
+} from '@nextui-org/react';
+import { categories, location } from '../utils';
 const AddProductForm = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false);
@@ -12,11 +20,17 @@ const AddProductForm = ({ onClose }) => {
     price: JSON.parse(localStorage.getItem('productData'))?.price || '',
     images: JSON.parse(localStorage.getItem('productData'))?.images || [],
     authorId: JSON.parse(localStorage.getItem('user'))?.id,
+    location: JSON.parse(localStorage.getItem('productData'))?.location || '',
+    category: JSON.parse(localStorage.getItem('productData'))?.category || '',
   });
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      await axios.post('/api/products', data);
+      await fetch('/api/products/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
       setLoading(false);
       localStorage.removeItem('productData');
       onClose();
@@ -34,7 +48,7 @@ const AddProductForm = ({ onClose }) => {
       setUploadLoading(true);
 
       await axios
-        .post('http://localhost:8000/upload', formData)
+        .post('/api/products/create', formData)
         .then((res) => {
           console.log(res.data);
           setData({ ...data, images: [...data.images, res.data?.url] });
@@ -56,8 +70,8 @@ const AddProductForm = ({ onClose }) => {
   }, [data]);
 
   return (
-    <Card className="flex flex-col items-center justify-center max-w-5xl mx-auto md:flex-row">
-      <div className="max-w-3xl p-5">
+    <Card className="flex flex-col items-center justify-center mx-auto max-w-7xl md:flex-row">
+      <div className="max-w-4xl p-4 ">
         <label htmlFor="img-upload">
           <div className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed border-primary bg-gray px-4 py-4 dark:bg-meta-4 sm:py-7.5">
             <div className="flex flex-col items-center justify-center space-y-3">
@@ -177,7 +191,7 @@ const AddProductForm = ({ onClose }) => {
           </div>
         )}
       </div>
-      <div className="max-w-2xl w-[400px] mx-auto">
+      <div className="max-w-5xl w-[480px] mx-auto">
         <CardBody className="overflow-hidden">
           <form className="flex flex-col gap-4">
             <Input
@@ -205,9 +219,34 @@ const AddProductForm = ({ onClose }) => {
               placeholder="Enter price of your product"
               type="number"
               value={data.price}
-              onChange={(e) => setData({ ...data, price: e.target.value })}
+              onChange={(e) =>
+                setData({ ...data, price: Number(e.target.value) })
+              }
             />
-
+            <div className="flex items-center justify-between gap-2">
+              <Select label="Select category" className="max-w-xs">
+                {categories.map((cat) => (
+                  <SelectItem
+                    onClick={() => setData({ ...data, category: cat.value })}
+                    key={cat.value}
+                    value={cat.value}
+                  >
+                    {cat.label}
+                  </SelectItem>
+                ))}
+              </Select>
+              <Select label="Select location" className="max-w-xs">
+                {location.map((loc) => (
+                  <SelectItem
+                    onClick={() => setData({ ...data, location: loc.value })}
+                    key={loc.value}
+                    value={loc.value}
+                  >
+                    {loc.label}
+                  </SelectItem>
+                ))}
+              </Select>
+            </div>
             <div className="flex justify-end gap-2">
               <button
                 disabled={
