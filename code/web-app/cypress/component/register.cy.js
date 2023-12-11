@@ -26,13 +26,21 @@ describe('Register component', () => {
   it('should validate the register form', () => {
 
     cy.get('button').contains('Join').click();
-    cy.get('.invalid:visible').should('have.length', 3);
+    cy.get('.text-red-700').should('be.visible');
   });
 
   it('should register a new user', () => {
     
     cy.get('input[name="name"]').type('John Doe');
-    cy.get('input[name="email"]').type('john.doe@example.com');
+    cy.get('input[name="email"]').type('john.doe@gmail.com');
+    cy.click('input[name="password"]')
+    cy.contains('Only .edu e-mail ids can register').should('be.visible');
+  });
+
+  it('should register a new user', () => {
+    
+    cy.get('input[name="name"]').type('John Doe');
+    cy.get('input[name="email"]').type('john.doe@bu.edu');
     cy.get('input[name="password"]').type('Password123');
 
     cy.get('button').contains('Join').click();
@@ -44,7 +52,7 @@ describe('Register component', () => {
   it('Displays error message on registration with an existing user', () => {
     // Fill out the registration form with an existing user's email
     cy.get('[name="name"]').type('John Doe');
-    cy.get('[name="email"]').type('existing.user@example.com'); // Use an existing user's email
+    cy.get('[name="email"]').type('existing.john.doe@bu.edu'); // Use an existing user's email
     cy.get('[name="password"]').type('securePassword123');
     cy.get('button[type="submit"]').click();
 
