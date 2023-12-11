@@ -6,7 +6,7 @@ from .views import ProductPostAPIView
 
 
 urlpatterns = [
-    path("products", ProductPostAPIView.as_view()),
+    path("products/create", ProductPostAPIView.as_view()),
     ]
 
 
