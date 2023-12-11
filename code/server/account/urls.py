@@ -15,7 +15,7 @@ urlpatterns = [
     path("logout", LogoutView.as_view(), name="auth_logout"),
     path("changepass", ChangePasswordView.as_view(), name="change_password"),
 
-    # Account URL
+    # Account Info URL
     path("user", AccountView.as_view()),
     ]
 
