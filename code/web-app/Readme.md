@@ -1,13 +1,13 @@
-# collegestreet-fe
-
-## Local Setup
+# collegestreet web-app code
 
 ## Tech Stack
 
- - ReactJS
+ - ReactJS (UI framwork)
+ - TailwindCSS (Styling)
+ - Websocket (for Chat feature)
+ - cypress (For testing)
 
 ## Steps to run Localhost
-
  1. Open terminal
  2. Go the the code/web-app folder
  2. Install all the dependencies
