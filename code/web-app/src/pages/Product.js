@@ -50,7 +50,7 @@ const Product = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:8000/products/${params?.id}`
+          `/products/${params?.id}`
         );
         setProduct(res.data);
         setLoading(false);
@@ -70,7 +70,7 @@ const Product = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:8000/products/${params?.id}`, {
+      await axios.delete(`/products/${params?.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
