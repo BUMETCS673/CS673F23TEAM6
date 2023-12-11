@@ -50,7 +50,7 @@ const Product = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `/products/${params?.id}`
+          `/api/products/${params?.id}`
         );
         setProduct(res.data);
         setLoading(false);
@@ -70,7 +70,7 @@ const Product = () => {
         return;
       }
 
-      await axios.delete(`/products/${params?.id}`, {
+      await axios.post(`/api/products/delete/${params?.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -16,7 +16,7 @@ const User = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `/users/${params?.id}`
+          `/api/users/user`
         );
         setUser(res.data?.user);
         setProducts(res.data?.posts);
@@ -38,16 +38,7 @@ const User = () => {
   }
 
   const handleEditSubmit = async (formData) => {
-    try {
-      await axios.post(`/users/update/${user.id}`, formData);
-
-      const updatedUserRes = await axios.get(`/users/${params.id}`);
-      setUser(updatedUserRes.data.user);
-
-      setShowEditModal(false);
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
+    //TODO: Update user details
   };
 
   return (

@@ -19,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
+  "proxy": "http://127.0.0.1:8000",
   "eslintConfig": {
     "extends": [
       "react-app"

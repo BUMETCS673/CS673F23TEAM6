@@ -25,7 +25,7 @@ const EditProductForm = ({ product, onClose }) => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      await fetch(`http://localhost:8000/products/${product?.id}`, {
+      await axios(`/api/products/${product?.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -48,7 +48,7 @@ const EditProductForm = ({ product, onClose }) => {
       setUploadLoading(true);
 
       await axios
-        .post('http://localhost:8000/upload', formData)
+        .post(`/api/products/update/${product?.id}`, formData)
         .then((res) => {
           console.log(res.data);
           setData({ ...data, images: [...data.images, res.data?.url] });

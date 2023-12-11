@@ -26,7 +26,7 @@ const AddProductForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      await fetch('http://localhost:8000/products', {
+      await fetch('/api/products/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -48,7 +48,7 @@ const AddProductForm = ({ onClose }) => {
       setUploadLoading(true);
 
       await axios
-        .post('http://localhost:8000/upload', formData)
+        .post('/api/products/create', formData)
         .then((res) => {
           console.log(res.data);
           setData({ ...data, images: [...data.images, res.data?.url] });

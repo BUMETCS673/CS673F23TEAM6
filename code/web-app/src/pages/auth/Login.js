@@ -163,7 +163,7 @@ const Login = ({ onClose }) => {
                 className="justify-end float-right pb-4 -mr-2"
                 type="reset"
                 onClick={() => {
-                  // navigate to forgot password page
+                  // TODO: navigate to forgot password page
                 }}
               >
                 <span className="text-sm text-primary hover:text-[#9155FD]">
