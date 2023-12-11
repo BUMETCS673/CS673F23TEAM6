@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
-from rest_framework import status, generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status, generics
 from rest_framework.response import Response
 
 from account.models import CustomUser
@@ -28,7 +28,7 @@ class ChangePasswordView(generics.UpdateAPIView):
     model = CustomUser
     serializer_class = ChangePasswordSerializer
 
-    def get_user(self):
+    def get_user(self, request):
         user = CustomUser.objects.get(email=request.data['email'])
         if not user.exists():
             return Response({"error": "User Does not exists"}, status=status.HTTP_400_BAD_REQUEST)

@@ -12,6 +12,5 @@ class Product(models.Model):
 	created_on = models.DateTimeField(auto_now_add=True)
 	price = models.TextField()
 
-
 	class Meta:
 		db_table = 'products'
