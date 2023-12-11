@@ -14,7 +14,7 @@ describe('Navbar', () => {
   
     it('should perform search', () => {
         // Type a search query and submit the form
-        cy.get('#default-search').type('Tesy');
+        cy.get('#default-search').type('Test');
         cy.get('form').submit();
     
         // Assert that the URL contains the search query

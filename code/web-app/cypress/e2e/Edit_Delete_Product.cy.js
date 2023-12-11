@@ -1,7 +1,7 @@
 import '../support/commands'
 
 
-describe('Login and Logout', () => {
+describe('Edit and delete product', () => {
   beforeEach(() => {
     const onCloseStub = cy.stub().as('onCloseStub');
       // Visit the login page
