@@ -6,8 +6,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 
 from .auth.serializer import UserAccountSerializer
 from .models import CustomUser
