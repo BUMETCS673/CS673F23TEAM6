@@ -8,6 +8,7 @@ A student marketplace for all your needs. Students now struggle to adjust to a n
  - [Front-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/web-app/Readme.md)
  - [Back-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/server/README.md)
 
+
 ### Tech Stack :
 Front-End : 
  - ReactJS
@@ -17,22 +18,34 @@ Back-End :
  - [Sanity](https://www.sanity.io/) : CDN service -  Decided to use Cloudinary
  - [Supabase](https://supabase.com/) : Postgres database and hosting it
 
+
+### Completed Features :
+- User Authen: Login, Logout, Signup
+- Homepage : About, Contact Us
+- Main Page : Marketplace Post listing
+- Create/Delete/Update Posts
+- Text Search/ Filters : Location/Price/Tags
+- Direct Message : Contact other users
+- User Profile : View/Edit
+
+
 ### Local Set up
  - [Front-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/web-app/Readme.md)
  - [Back-End](https://github.com/BUMETCS673/CS673F23TEAM6/blob/main/code/server/README.md)
+
+
+### Team Members:
+-Theerarun Tubnonghee (Steve) | Team Lead - Frontend Implementation
+-Aishwarya Raja | Configuration Lead - Backend Implementation
+-Nidhi Desai | QA Lead - Testing Implementation
+-Subhajit Das (Jeet) | Backend Lead - Backend Implementation
+-Chenyang Lyu (Nick) | Frontend Lead - Frontend Implementation
+-Yin Xiancheng (Xanthus) | DevOps Lead - Backend Implementation
+-Vedant Gupta | Design/Implementation Lead - Frontend Implementation
+
 
 ### CONTRIBUTION STANDARD:
 Initially all the codes and changes are pushed to the main branch. Consequently, it delivered code crashes and faced synchronizations. 
 In order to avoid this synchronization, we created two branches which are fe (frontend) and be (backend). All the changes made in the frontend part are pushed to the branch fe. All the changes and performance happening in the backend are updated and pushed to the branch be. This makes a very clear path for everyone to understand where the changes and updates are made. Teammates are not given access to push the changes or update directly to the main branch.  The modified codes will be reviewed before PR (pull request). 
 Finally, the two branches fe and be will be reviewed and pushed to the main branch by the team leads. Here is a simple diagrammatic view of how this algorithm works.
-
 ![Alt text](image.png)
-
-### Team Members:
--Theerarun Tubnonghee (Steve) | Team Lead
--Aishwarya Raja | Configuration Lead
--Nidhi Desai | QA Lead
--Subhajit Das (Jeet) | Backend Lead
--Chenyang Lyu (Nick) | Frontend Lead
--Yin Xiancheng (Xanthus) | DevOps Lead
--Vedant Gupta | Design/Implementation Lead
