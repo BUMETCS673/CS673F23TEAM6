@@ -24,6 +24,18 @@ describe('Product component', () => {
     cy.get('.w-1/4 h-20 mx-2 text-2xl font-semibold text-center border rounded-xl').contains('Price: $100');
   });
 
+  it('should open edit product modal', () => {
+    cy.wait(() => {
+      cy.get('.ProductCard').should('be.visible');
+    });
+
+    cy.get('svg[data-testid="edit-icon"]').click();
+    cy.get('.modal-content').should('be.visible');
+    cy.get('.modal-content h1').should('contain', 'Edit Product');
+    cy.get('.edit-product-button').click();
+    cy.get('.modal').should('be.visible');
+  });
+
   it('should allow the user to delete the product if they are the author', () => {
     cy.wait(() => {
       cy.get('.ProductCard').should('be.visible');
