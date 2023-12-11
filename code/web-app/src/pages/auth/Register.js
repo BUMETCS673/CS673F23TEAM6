@@ -11,10 +11,15 @@ const Register = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
+  const isEduEmail = (email) => {
+    return email.endsWith('.edu');
+  };
+
   const isStrongPassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
     return regex.test(password);
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,11 +90,11 @@ const Register = ({ onClose }) => {
                 }}
                 onBlur={(e) => {
                   // Only .edu e-mail ids can register
-                  if (e.target.value.endsWith('.edu')) {
-                    setData({ ...data, email: e.target.value });
-                  } else {
+                  if (!isEduEmail(e.target.value)) {
+                    setError('Only .edu email addresses are allowed');
                     setData({ ...data, email: '' });
-                    window.alert('Only .edu e-mail ids can register');
+                  } else {
+                    setError('');
                   }
                 }}
                 placeholder="Email"
