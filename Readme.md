@@ -29,10 +29,10 @@ Finally, the two branches fe and be will be reviewed and pushed to the main bran
 ![Alt text](image.png)
 
 ### Team Members:
-Theerarun Tubnonghee (Steve) | Team Lead
-Aishwarya Raja | Configuration Lead
-Nidhi Desai | QA Lead
-Subhajit Das (Jeet) | Backend Lead
-Chenyang Lyu (Nick) | Frontend Lead
-Yin Xiancheng (Xanthus) | DevOps Lead
-Vedant Gupta | Design/Implementation Lead
+-Theerarun Tubnonghee (Steve) | Team Lead
+-Aishwarya Raja | Configuration Lead
+-Nidhi Desai | QA Lead
+-Subhajit Das (Jeet) | Backend Lead
+-Chenyang Lyu (Nick) | Frontend Lead
+-Yin Xiancheng (Xanthus) | DevOps Lead
+-Vedant Gupta | Design/Implementation Lead
