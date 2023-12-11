@@ -1,6 +1,6 @@
 {
-  "short_name": "CS",
-  "name": "College Street",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",

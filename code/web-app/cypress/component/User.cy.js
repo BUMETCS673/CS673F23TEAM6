@@ -18,8 +18,8 @@ describe('User component', () => {
       cy.get('.p-8 mt-24 bg-white shadow').should('be.visible');
     });
 
-    cy.get('h1').contains('User Name');
-    cy.get('p').contains('User Email');
+    cy.get('h1').contains('Nidhi');
+    cy.get('p').contains('Nidhi@bu.edu');
     cy.get('p').contains('User Bio');
   });
 
@@ -28,6 +28,6 @@ describe('User component', () => {
       cy.get('.ProductCardProfile').should('be.visible');
     });
     // ProductCardProfile element should be displayed and have a length of 1
-    cy.get('.ProductCardProfile').should('have.length.at.least', 1);
+    cy.get('.ProductCardProfile').should('have.length', 3);
   });
 });

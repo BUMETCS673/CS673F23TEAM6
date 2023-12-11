@@ -3,9 +3,6 @@ import ProductCard from '../Components/ProductCard';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const NO_POST_FOUND_MESSAGE = "We're sorry. We cannot find what you're looking for";
-const LOADING_POST_MESSAGE = "Just a bit. We are looking for your interests ...";
-
 export default function Marketplace() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -16,36 +13,19 @@ export default function Marketplace() {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/');
-      return; // Return early to prevent further execution
     }
-
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/api/products?search=${params.get(`search`)');
-        setProducts(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      } finally { // Use "finally" to ensure loading is set to false regardless of success or error.
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [navigate, window.location.search]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/');
-    }
-
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get('/api/products?search=${params.get(`search`)');
+        const res = await axios.get(
+          `http://localhost:8000/products?search=${params.get(
+            'search'
+          )}&location=${params.getAll('location')}&category=${params.getAll(
+            'category'
+          )}&min_price=${params.get('min_price')}&max_price=${params.get(
+            'max_price'
+          )}&sortBy=${params.get('sortBy')}`
+        );
         setProducts(res.data);
         setLoading(false);
       } catch (error) {
@@ -53,13 +33,12 @@ export default function Marketplace() {
         setLoading(false);
       }
     };
-
     fetchProducts();
-  }, [navigate, window.location.search]);
+  }, [window.location.search]);
 
-  
-  // TODO: We could extract this loadingPost to another .js
-  const loadingPost = (
+  return (
+    <div>
+      {loading ? (
         <section className="flex flex-col items-center justify-center w-full pb-40 mx-auto gap-x-5 gap-y-10 max-w-7xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -76,25 +55,19 @@ export default function Marketplace() {
             />
           </svg>
 
-          <p className="text-center">{LOADING_POST_MESSAGE}</p>
+          <p className="text-center">getting products...</p>
         </section>
-  );
-
-  const listingPost = (
+      ) : (
         <section className="grid w-full grid-cols-1 pb-40 mx-auto gap-x-5 gap-y-10 max-w-7xl md:grid-cols-3 ">
-          {products.length > 0 ? (
-            products.map((product, i) => (
+          {products?.length > 0 ? (
+            products?.map((product, i) => (
               <ProductCard key={i} product={product} />
             ))
           ) : (
-            <p className="text-center">{NO_POST_FOUND_MESSAGE}</p>
+            <p className="text-center">No products found.</p>
           )}
         </section>
-  )
-
-  return ( // Keep return clean as much as possible
-    <div>
-      {loading ? ( loadingPost ) : ( listingPost )}
+      )}
     </div>
   );
 }
