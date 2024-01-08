@@ -11,7 +11,8 @@ A student marketplace for all your needs. Students now struggle to adjust to a n
 
 ### Tech Stack :
 Front-End : 
- - ReactJS
+ - ReactJS with Javascript
+ - TailwindCSS ( for styling)
 Back-End : 
  - Python 3.x
  - Django with Django-rest Framework : For Model and everything
@@ -23,7 +24,7 @@ Back-End :
 - User Authen: Login, Logout, Signup
 - Homepage : About, Contact Us
 - Main Page : Marketplace Post listing
-- Create/Delete/Update Posts
+- Create/Delete/Update Posts ( that is items to sell/buy)
 - Text Search/ Filters : Location/Price/Tags
 - Direct Message : Contact other users
 - User Profile : View/Edit
